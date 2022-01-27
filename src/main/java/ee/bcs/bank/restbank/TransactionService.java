@@ -61,7 +61,7 @@ public class TransactionService {
         int transactionId = bank.getTransactionIdCount();
 
         //  päri välja accountID abiga õige konto ja balance
-        AccountDto account = accountService.getAccountBy(accounts, accountId);
+        AccountDto account = accountService.getAccountByID(accounts, accountId);
         Integer balance = account.getBalance();
 
         int newBalance;

@@ -42,7 +42,7 @@ public class AccountService {
         return false;
     }
 
-    public AccountDto getAccountBy(List<AccountDto> accounts, int accountId) {
+    public AccountDto getAccountByID(List<AccountDto> accounts, int accountId) {
         //          käime läbi kõik objektid=kontod accounts listis,
         //         ja paneme iga konto muutujasse 'account'
         for (AccountDto account : accounts) {
@@ -71,5 +71,25 @@ public class AccountService {
             }
         }
         return null;
+    }
+
+    public RequestResult updateOwnerDetails(List<AccountDto> accounts, AccountDto accountDto) {
+        RequestResult requestResult = new RequestResult();
+
+        int accountId = accountDto.getId();
+        if (!accountIdExist(accounts, accountId)) {
+            requestResult.setError("Account ID: " + accountId + " does not exist");
+            requestResult.setAccountId(accountId);
+            return requestResult;
+        }
+        AccountDto account = getAccountByID(accounts, accountId);
+        account.setFirstName(accountDto.getFirstName());
+        account.setLastName(accountDto.getLastName());
+
+        requestResult.setAccountId(accountId);
+        requestResult.setMessage("Successfully updated account");
+
+        return requestResult;
+
     }
 }
