@@ -58,12 +58,18 @@ public class BankController {
 
     @PostMapping("/new/transaction")
     public RequestResult addNewTransaction(@RequestBody TransactionDto transactionDto) {
-       RequestResult requestResult = transactionService.addNewTransaction(bank, transactionDto);
-        return requestResult;
+        return transactionService.addNewTransaction(bank, transactionDto);
     }
+
     @PostMapping("/receive/transaction")
     public RequestResult receiveNewTransaction(@RequestBody TransactionDto transactionDto) {
         return transactionService.receiveNewTransaction(bank, transactionDto);
+    }
+
+    @PutMapping("/update/owner")
+
+    public RequestResult updateOwnerDetails(@RequestBody AccountDto accountDto) {
+        return accountService.updateOwnerDetails(bank.getAccounts(), accountDto);
     }
 
     //  loo transactionService alla uus teenus                                      createTransactionForNewAccount()
