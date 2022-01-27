@@ -72,8 +72,15 @@ public class BankController {
         return accountService.updateOwnerDetails(bank.getAccounts(), accountDto);
     }
 
-    //  loo transactionService alla uus teenus                                      createTransactionForNewAccount()
-    //  loo bankService alla uus teenus                                             addTransaction()
+//    TODO lock account / make sure wrong account ID is handled
+//    TODO tehke endpoint, millega saab kontot lukustada või avada
+//    kontrollige ID olemasolu
+
+
+    @DeleteMapping("/delete/account")
+    public RequestResult deleteAccount(@RequestParam int accountId) {
+        return accountService.deleteAccount(bank.getAccounts(), accountId);
+    }
 
 
 }
