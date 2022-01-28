@@ -110,4 +110,24 @@ public class AccountService {
 
         return requestResult;
     }
+
+    public RequestResult lockAccount(List<AccountDto> accounts, int accountId) {
+        RequestResult requestResult = new RequestResult();
+
+        if (!accountIdExist(accounts, accountId)) {
+            requestResult.setError("Account ID: " + accountId + " does not exist");
+            requestResult.setAccountId(accountId);
+            return requestResult;
+        }
+        AccountDto account = getAccountByID(accounts, accountId);
+        account.setLocked(!account.getLocked());
+        requestResult.setLocked(account.getLocked());
+
+        if (!account.getLocked()) {
+            requestResult.setMessage("Account unlocked");
+        } else {
+            requestResult.setMessage("Account locked");
+        }
+        return requestResult;
+    }
 }

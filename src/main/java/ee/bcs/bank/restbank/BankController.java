@@ -67,7 +67,6 @@ public class BankController {
     }
 
     @PutMapping("/update/owner")
-
     public RequestResult updateOwnerDetails(@RequestBody AccountDto accountDto) {
         return accountService.updateOwnerDetails(bank.getAccounts(), accountDto);
     }
@@ -80,6 +79,11 @@ public class BankController {
     @DeleteMapping("/delete/account")
     public RequestResult deleteAccount(@RequestParam int accountId) {
         return accountService.deleteAccount(bank.getAccounts(), accountId);
+    }
+
+    @PutMapping("/lock/account")
+    public RequestResult lockAccount(@RequestParam int accountId)  {
+        return accountService.lockAccount(bank.getAccounts(), accountId);
     }
 
 

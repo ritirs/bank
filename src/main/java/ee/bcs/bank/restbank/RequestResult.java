@@ -11,4 +11,5 @@ public class RequestResult {
     private int transactionId;
     private String message;
     private String error;
+    boolean locked;
 }
